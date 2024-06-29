@@ -1,0 +1,128 @@
+$lightBlack: 0 5px 15px rgba(0, 0, 0, 0.09);
+$mediumBlack: rgba(0, 0, 0, 0.23);
+$black: #000;
+$white: #fff;
+$white2: #f5f5f5;
+$lightGray: #babac0;
+$gray: #a0a0a5;
+$blue: #1976d2;
+$lightBlue: rgba(25, 118, 210, 0.08);
+
+$borderColor: $mediumBlack;
+$dropDownBgColor: $white;
+$dropDownShadow: $lightBlack;
+$optionHoverBgColor: $lightBlue;
+$optionActiveTextColor: $blue;
+$optionActiveBgColor: $optionHoverBgColor;
+
+.select {
+  position: relative;
+  min-width: 230px;
+
+  .selectedLabel {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 16px 32px 16px 14px;
+    height: 56px;
+    border: 1px solid $borderColor;
+    border-radius: 4px;
+    cursor: pointer;
+
+    &:hover {
+      border-color: $black;
+    }
+
+    &:focus {
+      border: 2px solid $blue;
+    }
+
+    &:after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      right: 15px;
+      height: 6px;
+      width: 6px;
+      border-top: solid 2px currentColor;
+      border-right: solid 2px currentColor;
+      transform: translateY(-65%) rotate(135deg);
+    }
+
+    .placeholder {
+      color: $gray;
+    }
+
+    span {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
+  .dropdown {
+    z-index: 1;
+    position: absolute;
+    right: 0;
+    width: 100%;
+    box-shadow: $dropDownShadow;
+    border-radius: 4px;
+    overflow: hidden;
+    user-select: none;
+    background: $dropDownBgColor;
+
+    .list {
+      padding: 0;
+      margin: 0;
+      list-style: none;
+      overflow: hidden;
+
+      &::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+        -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+        background-color: $white2;
+      }
+
+      &::-webkit-scrollbar {
+        width: 7px;
+        background-color: $white2;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color: $lightGray;
+        border-radius: 20px;
+
+        &:hover {
+          background-color: $gray;
+        }
+      }
+
+      .option {
+        padding: 12px 20px;
+        height: 48px;
+        cursor: pointer;
+        text-align: left;
+
+        &:hover {
+          background: $optionHoverBgColor;
+        }
+      }
+    }
+  }
+}
+
+:global {
+  .open:after {
+    transform: translateY(-35%) rotate(-45deg) !important;
+  }
+
+  .focus {
+    border: 2px solid $blue !important;
+  }
+
+  .selected {
+    font-weight: bold;
+    color: $optionActiveTextColor;
+    background: $optionActiveBgColor !important;
+  }
+}
